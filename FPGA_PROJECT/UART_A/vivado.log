@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Nov 29 16:47:59 2017
+# Process ID: 5604
+# Current directory: D:/FPGA_PROJECT/UART_A
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2124 D:\FPGA_PROJECT\UART_A\UART_A.xpr
+# Log file: D:/FPGA_PROJECT/UART_A/vivado.log
+# Journal file: D:/FPGA_PROJECT/UART_A\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/FPGA_PROJECT/UART_A/UART_A.xpr
+INFO: [Project 1-313] Project file moved from 'D:/Silego/FPGA_Projects/UART/UART_A' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.2/data/ip'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 29 16:48:25 2017...
+_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 29 19:24:08 2017...

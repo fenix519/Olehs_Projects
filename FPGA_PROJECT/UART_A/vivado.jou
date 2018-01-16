@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Nov 29 16:47:59 2017
+# Process ID: 5604
+# Current directory: D:/FPGA_PROJECT/UART_A
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2124 D:\FPGA_PROJECT\UART_A\UART_A.xpr
+# Log file: D:/FPGA_PROJECT/UART_A/vivado.log
+# Journal file: D:/FPGA_PROJECT/UART_A\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/FPGA_PROJECT/UART_A/UART_A.xpr
+update_compile_order -fileset sources_1

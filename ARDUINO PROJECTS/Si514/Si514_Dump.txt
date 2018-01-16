@@ -1,0 +1,13 @@
+
+Read user register maps of Si514
+Register0: 0x33
+Register5: 0xA2
+Register6: 0x39
+Register7: 0x68
+Register8: 0xCB
+Register9: 0x8
+Register10: 0x12
+Register11: 0x0
+Register14: 0x80
+Register128: 0x0
+Register132: 0x4
