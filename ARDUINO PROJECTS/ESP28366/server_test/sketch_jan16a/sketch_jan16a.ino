@@ -1,7 +1,10 @@
 #include <ESP8266WiFi.h>
- 
-const char* ssid = "SilegoUTC2";
-const char* password = "silego123";
+
+
+
+
+const char* ssid = "ADA";
+const char* password ="cascad519";
  
 int ledPin = D5;
 WiFiServer server(80);
