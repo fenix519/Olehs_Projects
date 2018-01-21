@@ -1,0 +1,57 @@
+<html><head><title>chart</title>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+<button id="change-chart"></button><script type="text/javascript"> google.setOnLoadCallback(drawChart);
+var button = document.getElementById('change-chart');function drawChart() {var data = google.visualization.arrayToDataTable([
+['Local Time', 'Temperature C', 'Temperature F', 'Pressure'],
+[new Date(1483824360000),24.48,76.07,1004.50],
+[new Date(1483824363000),24.48,76.06,1004.45],
+[new Date(1483824366000),24.48,76.07,1004.47],
+[new Date(1483824370000),24.49,76.08,1004.52],
+[new Date(1483824373000),24.48,76.06,1004.42],
+[new Date(1483824377000),24.48,76.06,1004.48],
+[new Date(1483824380000),24.48,76.07,1004.47],
+[new Date(1483824383000),24.49,76.09,1004.48],
+[new Date(1483824387000),24.49,76.08,1004.52],
+[new Date(1483824390000),24.49,76.08,1004.46],
+[new Date(1483824394000),24.49,76.09,1004.51],
+[new Date(1483824397000),23.49,76.09,1004.54],
+[new Date(1483824400000),24.49,76.09,1004.57],
+[new Date(1483824404000),24.50,76.10,1004.56],
+[new Date(1483824407000),24.49,76.09,1004.48],
+[new Date(1483824411000),24.50,76.10,1004.50],
+[new Date(1483824414000),24.52,76.14,1004.58],
+[new Date(1483824417000),24.51,76.12,1004.56],
+[new Date(1483824421000),24.50,76.10,1004.53],
+]);
+function drawChartCelsius() {var tempCview = new google.visualization.DataView(data);
+    tempCview.setColumns([0,1]);
+    chart.draw(tempCview, optionsCelsius);
+    button.innerText = 'Change to Fahrenheit';
+    button.onclick = drawChartFahrenheit;}
+function drawChartFahrenheit() {var tempFview = new google.visualization.DataView(data);
+    tempFview.setColumns([0,2]);
+    chart.draw(tempFview, optionsFahrenheit);
+    button.innerText = 'Change to Pressure';
+    button.onclick = drawChartPressure;}
+function drawChartPressure() {var tempPressureView = new google.visualization.DataView(data);
+    tempPressureView.setColumns([0,3]);
+    chart.draw(tempPressureView, optionsPressure);
+    button.innerText = 'Change to Celsius';
+    button.onclick = drawChartCelsius;}
+var formatter = new google.visualization.DateFormat({ formatType: 'short',timeZone: 0});
+  formatter.format(data, 0);
+// Set X-Axis Labels
+var xTicks = [];
+for (var i = 0; i < data.getNumberOfRows(); i++) {
+   xTicks.push({
+    v: data.getValue(i, 0),
+    f: data.getFormattedValue(i, 0) });
+}
+var optionsPressure = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##,### mb"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in Millibars' };
+var optionsCelsius = {'height': 320,chartArea:{top:20,  height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## �C"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };
+var optionsFahrenheit = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## �F"},series:{0:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Temperature in Fahrenheit'};
+var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));drawChartCelsius();}
+</script>
+<font color="#000000"><body><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<h1>Temperature and Pressure Chart</h1><a href="/">back</a><BR><BR>
+<div id="curve_chart" style="width: 800px; height: 300px"></div><BR><BR>Number of readings=19<BR>Max allowed readings=936<BR><BR><BR>First reading at : <BR>Most recent reading : <BR></body></html>
