@@ -1,7 +1,15 @@
+
+
 <html><head><title>chart</title>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
 <button id="change-chart"></button><script type="text/javascript"> google.setOnLoadCallback(drawChart);
-var button = document.getElementById('change-chart');function drawChart() {var data = google.visualization.arrayToDataTable([
+
+
+
+var button = document.getElementById('change-chart');
+
+
+function drawChart() {var data = google.visualization.arrayToDataTable([
 ['Local Time', 'Temperature C', 'Temperature F', 'Pressure'],
 [new Date(1483824360000),24.48,76.07,1004.50],
 [new Date(1483824363000),24.48,76.06,1004.45],
@@ -23,23 +31,33 @@ var button = document.getElementById('change-chart');function drawChart() {var d
 [new Date(1483824417000),24.51,76.12,1004.56],
 [new Date(1483824421000),24.50,76.10,1004.53],
 ]);
+
+
 function drawChartCelsius() {var tempCview = new google.visualization.DataView(data);
     tempCview.setColumns([0,1]);
     chart.draw(tempCview, optionsCelsius);
     button.innerText = 'Change to Fahrenheit';
     button.onclick = drawChartFahrenheit;}
+
+
 function drawChartFahrenheit() {var tempFview = new google.visualization.DataView(data);
     tempFview.setColumns([0,2]);
     chart.draw(tempFview, optionsFahrenheit);
     button.innerText = 'Change to Pressure';
     button.onclick = drawChartPressure;}
+
+
 function drawChartPressure() {var tempPressureView = new google.visualization.DataView(data);
     tempPressureView.setColumns([0,3]);
     chart.draw(tempPressureView, optionsPressure);
     button.innerText = 'Change to Celsius';
     button.onclick = drawChartCelsius;}
+
+
 var formatter = new google.visualization.DateFormat({ formatType: 'short',timeZone: 0});
   formatter.format(data, 0);
+
+
 // Set X-Axis Labels
 var xTicks = [];
 for (var i = 0; i < data.getNumberOfRows(); i++) {
@@ -48,6 +66,8 @@ for (var i = 0; i < data.getNumberOfRows(); i++) {
     f: data.getFormattedValue(i, 0) });
 }
 var optionsPressure = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##,### mb"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in Millibars' };
+
+
 var optionsCelsius = {'height': 320,chartArea:{top:20,  height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## �C"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };
 var optionsFahrenheit = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## �F"},series:{0:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Temperature in Fahrenheit'};
 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));drawChartCelsius();}
