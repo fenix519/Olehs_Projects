@@ -1,11 +1,13 @@
 #include "ESP8266WiFi.h"
 #include "WiFiClient.h"
 #include "ESP8266WebServer.h"
-
-
 #include  "Arduino.h"
 
 
+extern "C" 
+{
+#include "user_interface.h"
+}
 
 struct network_type
 {
@@ -25,72 +27,111 @@ network_type acess_list[] = {
 
 network_type acess_point = {"Meteo station","", 0, true };
 
+struct data_point
+{
+  float temperature;
+  float hyumidity; 
+  float co2;
+  float presure;
+};
+
+WiFiServer server(80);
 
 
 void setup() 
 {
+
+  int n=0;
+  bool acess_flag_a=false;
+  network_type * router_acess_point;
+
+  char * ssid;
+  char * password;
+  
+  
   Serial.begin(115200);
   // Set WiFi to station mode and disconnect from an AP if it was previously connected
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();
   delay(100);
-  Serial.println("Setup done");
-}
-
-
-void loop() 
-{
-
   
-int n=0;
-bool acess_flag_a=false;
-uint32_t free;
-
-
-network_type * networks = envirument_scan(&n);
-network_type * router_acess_point;
-
-if (n!=0) // Are networks ? 
+  network_type * networks = envirument_scan(&n);
+ 
+  if (n!=0) // Are networks ? 
   {  
    sort(networks, &n);
    router_acess_point = chose_best(networks, acess_list,& n ,&acess_flag_a);
   }
 
-   
-if(n!=0 && acess_flag_a) // Are known networks ? 
+  if(n!=0 && acess_flag_a) // Are known networks ? 
       {
        Serial.print("Have founded acess point:");
        Serial.println(router_acess_point->Str_SSID);
+       //----------------------------------------------------------------------------------------
+       // Connect to WiFi network
+          
+       Serial.println();
+       Serial.println();
+//       Serial.print("Connecting to ");
+//       Serial.println(router_acess_point->Str_SSID);
+
+//       /router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length());
+//       /router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length());
+
+       ssid = string2char(router_acess_point->Str_SSID);
+
+       Serial.println(ssid);
+       
+ 
+       WiFi.begin(ssid, password);
+ 
+       while (WiFi.status() != WL_CONNECTED) 
+       {delay(500);
+        Serial.print(".");}
+
+       Serial.println("");
+       Serial.println("WiFi connected");
+ 
+       // Start the server
+       server.begin();
+       Serial.println("Server started");
+ 
+       // Print the IP address
+      Serial.print("Use this URL : ");
+      Serial.print("http://");
+      Serial.print(WiFi.localIP());
+      Serial.println("/");
+       //----------------------------------------------------------------------------------------      
        }
 
-if( n==0 || !acess_flag_a)   
-  Serial.println("Haven't founded acess point. Have to create acess point");  
+  if( n==0 || !acess_flag_a)   
+      {Serial.println("Haven't founded acess point. Have to create acess point");}
 
-free=system_get_free_heap_size();// - ALLOCATED_RAM;
-Serial.println(free);
+      
 
-//  1- networks haven't found. 
-//  2- networks have found but not opened or known acess point.
+  Serial.println("Setup done");
+}
 
 
-//for(int i=0; i<n; i++)
-//{  
-//   Serial.print(i);
-//   Serial.print(": ");
-//   Serial.print(networks[i].Str_SSID);
-//   Serial.print(" ");
-//   Serial.print(networks[i].Power);
-//   Serial.print(" ");
-//   Serial.println(networks[i].acces_flag);
-//   
-//   delay(50);
-//}
-delete(networks);
+
+
+
+void loop() 
+{
+
+uint32_t freeRAM;
+ 
+freeRAM = system_get_free_heap_size();
+Serial.print(" freeRAM :");
+Serial.print(freeRAM);
+Serial.println(" bytes ");
 
 Serial.println("\n\n\n");
 delay(5000);
-
 }
+
+
+
 
 network_type * envirument_scan(int *n)
 {
@@ -178,6 +219,13 @@ network_type* chose_best(network_type envirument_network[], network_type acess_l
   if (*is_acess) break;
   }
   return(&acess_list[f_number]);
+}
+
+char* string2char(String command){
+    if(command.length()!=0){
+        char *p = const_cast<char*>(command.c_str());
+        return p;
+    }
 }
 
 

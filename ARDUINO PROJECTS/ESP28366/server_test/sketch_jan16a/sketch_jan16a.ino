@@ -5,8 +5,22 @@ extern "C"
 #include "user_interface.h"
 }
 
-const char* ssid = "SilegoUTC2";
-const char* password ="silego123";
+struct data_point
+{
+  float temperature;
+  float hyumidity; 
+  float co2;
+  float presure;
+};
+
+data_point* sensors_list;
+
+
+
+
+
+const char* ssid = "ADA";
+const char* password ="cascad519";
  
 int ledPin = D5;
 WiFiServer server(80);
@@ -43,6 +57,9 @@ void setup() {
   Serial.print("http://");
   Serial.print(WiFi.localIP());
   Serial.println("/");}
+
+
+
  
 void loop() {
   // Check if a client has connected
@@ -96,7 +113,7 @@ void loop() {
 
 
  client.println(generateHTML());
- client.close();
+ //client.close();
   delay(1);
   Serial.println("Client disconnected");
   Serial.println("");
@@ -121,12 +138,12 @@ myHTML += "      function drawChart() {";
 myHTML += "";
 myHTML += "        var data = google.visualization.arrayToDataTable([";
 myHTML += "          ['Label', 'Value'],";
-myHTML += "          ['Memory', 10]";
+myHTML += "          ['Memory', MEM_VALUE]";
 myHTML += "        ]);";
 myHTML += "";
 myHTML += "        var options = {";
 myHTML += "          width: 400, height: 120,";
-myHTML += "          redFrom: 90, redTo: 100,";
+myHTML += "          redFrom: 90, redTo: 200,";
 myHTML += "          yellowFrom:75, yellowTo: 90,";
 myHTML += "          minorTicks: 5";
 myHTML += "        };";
@@ -149,6 +166,6 @@ Serial.print(freeRAM);
 Serial.println(" bytes ");
 
 //sensor.requestTemperatures(); 
-//myHTML.replace("MEM_VALUE", String(freeRAM , 1));
+myHTML.replace("MEM_VALUE", "32");
 return(myHTML);
 }
