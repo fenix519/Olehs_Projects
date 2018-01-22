@@ -164,7 +164,7 @@ void loop()
     iStart+=+sGetstart.length();
     iEndSpace = sRequest.indexOf(" ",iStart);
     iEndQuest = sRequest.indexOf("?",iStart);
-    
+  
     // are there parameters?
     if(iEndSpace>0)
     {

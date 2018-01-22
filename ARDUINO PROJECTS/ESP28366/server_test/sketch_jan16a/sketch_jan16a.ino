@@ -1,11 +1,12 @@
 #include <ESP8266WiFi.h>
 
+extern "C" 
+{
+#include "user_interface.h"
+}
 
-
-
-
-const char* ssid = "ADA";
-const char* password ="cascad519";
+const char* ssid = "SilegoUTC2";
+const char* password ="silego123";
  
 int ledPin = D5;
 WiFiServer server(80);
@@ -16,7 +17,7 @@ void setup() {
  
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
- 
+  
   // Connect to WiFi network
   Serial.println();
   Serial.println();
@@ -25,7 +26,8 @@ void setup() {
  
   WiFi.begin(ssid, password);
  
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     delay(500);
     Serial.print(".");
   }
@@ -94,15 +96,20 @@ void loop() {
 
 
  client.println(generateHTML());
- 
+ client.close();
   delay(1);
   Serial.println("Client disconnected");
   Serial.println("");
  }
 
+
+
 String generateHTML()
 {
 String myHTML;
+String balast; 
+uint32_t freeRAM;
+
 myHTML="";
 myHTML+="<html>";
 myHTML += "  <head> ";
@@ -114,10 +121,7 @@ myHTML += "      function drawChart() {";
 myHTML += "";
 myHTML += "        var data = google.visualization.arrayToDataTable([";
 myHTML += "          ['Label', 'Value'],";
-myHTML += "          ['Temperature', 10],";
-myHTML += "          ['CO2', 600],";
-myHTML += "          ['Presure', 10]";
-myHTML += "        ";
+myHTML += "          ['Memory', 10]";
 myHTML += "        ]);";
 myHTML += "";
 myHTML += "        var options = {";
@@ -138,7 +142,13 @@ myHTML += "  <body>";
 myHTML += "    <div id=\"chart_div\" style=\"width: 400px; height: 120px;\"></div>";
 myHTML += "  </body>";
 myHTML += "</html>";
+
+freeRAM = system_get_free_heap_size();
+Serial.print(" freeRAM :");
+Serial.print(freeRAM);
+Serial.println(" bytes ");
+
 //sensor.requestTemperatures(); 
-//myHTML.replace("@id_1@", String(sensor.getTempCByIndex(0), 1));
+//myHTML.replace("MEM_VALUE", String(freeRAM , 1));
 return(myHTML);
 }
