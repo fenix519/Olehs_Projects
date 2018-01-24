@@ -75,7 +75,7 @@ void setup()
 //       Serial.print("Connecting to ");
 //       Serial.println(router_acess_point->Str_SSID);
 
-//       /router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length());
+//       /router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length());                          <- --------------------------problem place--------------------- 
 //       /router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length());
 
        ssid = string2char(router_acess_point->Str_SSID);
