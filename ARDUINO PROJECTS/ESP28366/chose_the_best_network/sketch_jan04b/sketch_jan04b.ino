@@ -27,6 +27,8 @@ network_type acess_list[] = {
 
 network_type acess_point = {"Meteo station","", 0, true };
 
+
+
 struct data_point
 {
   float temperature;
@@ -120,6 +122,7 @@ Serial.println(" bytes ");
 Serial.println("\n\n\n");
 delay(5000);
 }
+
 
 
 network_type * envirument_scan(int *n)
