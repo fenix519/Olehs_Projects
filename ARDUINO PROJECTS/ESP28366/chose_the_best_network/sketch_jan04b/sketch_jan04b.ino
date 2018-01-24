@@ -45,8 +45,8 @@ void setup()
   bool acess_flag_a=false;
   network_type * router_acess_point;
 
-  char * ssid;
-  char * password;
+  char ssid[] = "My_Test";
+  char password[] = "aaa";
   
   
   Serial.begin(115200);
@@ -72,19 +72,13 @@ void setup()
           
        Serial.println();
        Serial.println();
-//       Serial.print("Connecting to ");
-//       Serial.println(router_acess_point->Str_SSID);
+       Serial.print("Connecting to ");
+       Serial.println(router_acess_point->Str_SSID);
 
-//       /router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length());
-//       /router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length());
+       router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length()+1);
+       router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length()+1);
 
-       ssid = string2char(router_acess_point->Str_SSID);
-
-       Serial.println(ssid);
-       
- 
-       WiFi.begin(ssid, password);
- 
+       WiFi.begin(ssid, password); 
        while (WiFi.status() != WL_CONNECTED) 
        {delay(500);
         Serial.print(".");}
@@ -107,8 +101,6 @@ void setup()
   if( n==0 || !acess_flag_a)   
       {Serial.println("Haven't founded acess point. Have to create acess point");}
 
-      
-
   Serial.println("Setup done");
 }
 
@@ -119,8 +111,7 @@ void setup()
 void loop() 
 {
 
-uint32_t freeRAM;
- 
+uint32_t freeRAM; 
 freeRAM = system_get_free_heap_size();
 Serial.print(" freeRAM :");
 Serial.print(freeRAM);
@@ -129,8 +120,6 @@ Serial.println(" bytes ");
 Serial.println("\n\n\n");
 delay(5000);
 }
-
-
 
 
 network_type * envirument_scan(int *n)
@@ -170,6 +159,8 @@ network_type * envirument_scan(int *n)
 return(buf);
 }
 
+
+
 void sweep_points(network_type* a, network_type* b)
 {  
   String SSID_buffer = "";
@@ -192,6 +183,8 @@ void sweep_points(network_type* a, network_type* b)
   b->Power = Power_buffer;
   b->acces_flag = bool_buffer;
  }
+
+
 
 void sort(network_type buf[], int *n)
 {
@@ -221,11 +214,11 @@ network_type* chose_best(network_type envirument_network[], network_type acess_l
   return(&acess_list[f_number]);
 }
 
-char* string2char(String command){
-    if(command.length()!=0){
-        char *p = const_cast<char*>(command.c_str());
-        return p;
-    }
-}
+//char* string2char(String command){
+//    if(command.length()!=0){
+//        char *p = const_cast<char*>(command.c_str());
+//        return p;
+//    }
+//}
 
 
