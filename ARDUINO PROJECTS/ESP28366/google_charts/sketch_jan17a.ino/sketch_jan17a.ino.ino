@@ -275,6 +275,9 @@ void loop()
     htmlContent += ("{\"tempC\":\"" + String(T) + "\",\"tempF\":\"" + String(F) + "\",\"pressure\":\"" + String(P) + "\"}");
     client.print(htmlContent);
   }
+
+
+  
   else if (sPath=="/chart.html"){ 
     //Standard html header stuff here.
     htmlContent = ("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n"); 
@@ -373,6 +376,13 @@ void loop()
     htmlContent += ("<BR></body></html>\n");
     client.print(htmlContent);
   }//End table
+
+
+
+
+
+
+
 
 
   //Read temperature
@@ -476,6 +486,7 @@ time_t getNtpTime()
   Serial.println("No NTP response");
   return 0;
 }
+
 
 
 

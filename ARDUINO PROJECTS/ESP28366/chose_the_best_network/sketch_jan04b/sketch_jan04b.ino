@@ -115,6 +115,10 @@ void setup()
 
 
 
+
+
+
+
 void loop() 
 {
 
@@ -225,6 +229,8 @@ void sort(network_type buf[], int *n)
 }
 
 
+
+
 network_type* chose_best(network_type envirument_network[], network_type acess_list[], int* n ,bool * is_acess)
 {
   int f_number=0;
@@ -249,6 +255,8 @@ network_type* chose_best(network_type envirument_network[], network_type acess_l
 //        return p;
 //    }
 //}
+
+
 
 
 String generateHTML()
