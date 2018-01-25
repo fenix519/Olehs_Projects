@@ -47,8 +47,8 @@ void setup()
   bool acess_flag_a=false;
   network_type * router_acess_point;
 
-  char ssid[] = "My_Test";
-  char password[] = "aaa";
+  char ssid[] = "access";
+  char password[] = "password";
   
   
   Serial.begin(115200);
@@ -76,19 +76,16 @@ void setup()
        Serial.println();
 
 
-
-//       Serial.print("Connecting to ");
-//       Serial.println(router_acess_point->Str_SSID);
-
-//       /router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length());                          <- --------------------------problem place--------------------- 
-//       /router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length());
-
-       Serial.print("Connecting to ");
-       Serial.println(router_acess_point->Str_SSID);
-
-
        router_acess_point->Str_SSID.toCharArray(ssid, router_acess_point->Str_SSID.length()+1);
        router_acess_point->Str_Password.toCharArray(password, router_acess_point->Str_Password.length()+1);
+
+       Serial.print("Connecting to ");
+       Serial.println("");
+       Serial.println(ssid);
+       Serial.println(password);
+       Serial.println("");
+
+       
 
        WiFi.begin(ssid, password); 
        while (WiFi.status() != WL_CONNECTED) 
