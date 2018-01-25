@@ -29,6 +29,8 @@ network_type acess_point = {"Meteo station","", 0, true };
 
 
 
+
+
 struct data_point
 {
   float temperature;
@@ -36,6 +38,9 @@ struct data_point
   float co2;
   float presure;
 };
+
+
+
 
 WiFiServer server(80);
 
@@ -115,10 +120,6 @@ void setup()
 
 
 
-
-
-
-
 void loop() 
 {
 
@@ -146,7 +147,11 @@ uint32_t freeRAM;
   Serial.println(" bytes ");
   Serial.println("\n\n\n");
 
-  client.println(generateHTML());
+  //client.println(generateHTML());
+
+
+  chart_generator(client);
+  
   //client.close();
   delay(0.5);
   Serial.println("Client disconnected");
@@ -193,7 +198,6 @@ return(buf);
 }
 
 
-
 void sweep_points(network_type* a, network_type* b)
 {  
   String SSID_buffer = "";
@@ -218,7 +222,6 @@ void sweep_points(network_type* a, network_type* b)
  }
 
 
-
 void sort(network_type buf[], int *n)
 {
   for(int x = 0; x < *n; x++)
@@ -227,9 +230,6 @@ void sort(network_type buf[], int *n)
      if((buf[y].Power) < (buf[y+1].Power))
        sweep_points( &buf[y], &buf[y+1]);
 }
-
-
-
 
 network_type* chose_best(network_type envirument_network[], network_type acess_list[], int* n ,bool * is_acess)
 {
@@ -255,8 +255,6 @@ network_type* chose_best(network_type envirument_network[], network_type acess_l
 //        return p;
 //    }
 //}
-
-
 
 
 String generateHTML()
@@ -307,5 +305,82 @@ Serial.println(" bytes ");
 myHTML.replace("MEM_VALUE", "32");
 return(myHTML);
 }
+
+
+void chart_generator(WiFiClient client)
+
+{
+
+    float timeStamp[] = {0,1,2,3,4,5,6,7,8,9};
+    float tempCdata[] = {1,1,1,1,1,1,1,1,1,1};
+    float pressData[] = {2,2,2,2,2,2,2,2,2,2};
+
+    int count = int(sizeof(timeStamp)/ sizeof(float));
+    int numberOfRows = 10;
+
+    String htmlContent;
+  
+    //Standard html header stuff here.
+    htmlContent = ("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n"); 
+    htmlContent += ("<html><head><title>chart</title>\n");
+  
+    //load google charts and create a button
+    htmlContent += ("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}\"></script>\n");
+    htmlContent += ("<button id=\"change-chart\"></button>");
+    htmlContent += ("<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);\n");
+    htmlContent += ("var button = document.getElementById('change-chart');");
+  
+    //Create a function to draw the chart and then add the data into a table
+    htmlContent += ("function drawChart() {var data = google.visualization.arrayToDataTable([\n");
+    htmlContent += ("['Local Time', 'Temperature C', 'Temperature F', 'Pressure'],\n");
+    //Send what we have to the client (web browser)
+    client.print(htmlContent);
+  
+    //Here we loop through the temp and pressure data to place it into the html source code
+    for (int i = 0; i< count ; i++)
+    {
+      htmlContent = ("[new Date(" + String(timeStamp[i]) +  "000)," + String(tempCdata[i]) +  "," + String((9.0/5.0)*tempCdata[i]+32.0) + "," + String(pressData[i]) + "],\n");
+      client.print(htmlContent);
+    }
+    htmlContent = ("]);\n");
+
+
+
+    //Continue to build the rest of the web page.  Here we create three function that the buttons uses to dsiplay the chart data.
+    htmlContent += ("function drawChartCelsius() {var tempCview = new google.visualization.DataView(data);\n    tempCview.setColumns([0,1]);\n    chart.draw(tempCview, optionsCelsius);\n    button.innerText = 'Change to Fahrenheit';\n    button.onclick = drawChartFahrenheit;}\n");
+    htmlContent += ("function drawChartFahrenheit() {var tempFview = new google.visualization.DataView(data);\n    tempFview.setColumns([0,2]);\n    chart.draw(tempFview, optionsFahrenheit);\n    button.innerText = 'Change to Pressure';\n    button.onclick = drawChartPressure;}\n");
+    htmlContent += ("function drawChartPressure() {var tempPressureView = new google.visualization.DataView(data);\n    tempPressureView.setColumns([0,3]);\n    chart.draw(tempPressureView, optionsPressure);\n    button.innerText = 'Change to Celsius';\n    button.onclick = drawChartCelsius;}\n");
+
+
+
+    //specify date format and then update x labels with this time format
+    htmlContent += ("var formatter = new google.visualization.DateFormat({ formatType: 'short',timeZone: 0});\n  formatter.format(data, 0);\n");
+    htmlContent += ("// Set X-Axis Labels\nvar xTicks = [];\n");
+    htmlContent += ("for (var i = 0; i < data.getNumberOfRows(); i++) {\n");
+    htmlContent += ("   xTicks.push({\n    v: data.getValue(i, 0),\n    f: data.getFormattedValue(i, 0) });\n}\n");
+
+    //Here are three chart options used for each chart.  E.g. colour, chart title, etc..
+    htmlContent += ("var optionsPressure = {'height': 320,chartArea:{top:20, height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##,### mb\"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in Millibars' };\n");
+    htmlContent += ("var optionsCelsius = {'height': 320,chartArea:{top:20,  height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##.## " + String((char)176) + "C\"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };\n");
+    htmlContent += ("var optionsFahrenheit = {'height': 320,chartArea:{top:20, height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##.## " + String((char)176) + "F\"},series:{0:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Temperature in Fahrenheit'};\n");
+    client.print(htmlContent);    
+  
+    //Draw chart 
+    htmlContent = ("var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));drawChartCelsius();}\n");
+    htmlContent += ("</script>\n");
+
+    //Page heading
+    htmlContent += ("<font color=\"#000000\"><body><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">\n<h1>Temperature and Pressure Chart</h1><a href=\"/\">back</a><BR><BR>\n");
+    htmlContent += ("<div id=\"curve_chart\" style=\"width: 800px; height: 300px\"></div><BR><BR>Number of readings=" + String(count) + "<BR>Max allowed readings=" + String(numberOfRows) + "<BR>");
+
+//    //Display the data and time for first and last reading
+//    htmlContent += ("<BR><BR>First reading at : ");
+//    timeAndDate(timeStamp[0],htmlContent);    
+//    htmlContent += ("<BR>Most recent reading : ");
+//    timeAndDate(timeStamp[count-1],htmlContent);     
+//    htmlContent += ("<BR></body></html>\n");
+    client.print(htmlContent);
+}
+
 
 
