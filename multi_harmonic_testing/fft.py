@@ -15,7 +15,7 @@ n = len(y) # length of the signal
 k = np.arange(n)
 T = n/Fs
 frq = k/T # two sides frequency range
-frq = frq[range(n/2)] # one side frequency range
+frq = frq[int(range(n/2))] # one side frequency range
 
 Y = np.fft.fft(y)/n # fft computing and normalization
 Y = Y[range(n/2)]
