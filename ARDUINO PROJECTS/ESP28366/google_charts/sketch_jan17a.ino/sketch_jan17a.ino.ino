@@ -10,8 +10,6 @@ extern "C"
 #include "user_interface.h"
 }
 
-
-
 #include <ArduinoJson.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
@@ -26,7 +24,6 @@ extern "C"
 
 
 #define GAUGE_REFRESH 1000 // How oftern (in milliseconds) to refresh the gauge values
-
 #define POLLPERIOD  3  // How often (in seconds) to poll for data which is used in the graph
 
 
@@ -380,11 +377,6 @@ void loop()
 
 
 
-
-
-
-
-
   //Read temperature
   status = startTemperature();
   if (status != 0){
@@ -486,10 +478,6 @@ time_t getNtpTime()
   Serial.println("No NTP response");
   return 0;
 }
-
-
-
-
 
 
 void printDigits(Print *p, int digits) {
