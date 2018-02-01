@@ -1,45 +1,53 @@
-<html><head><title>chart</title>
+
+
+<html><head><title>Meteo station</title>
+
+
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-<button id="change-chart"></button><script type="text/javascript"> google.setOnLoadCallback(drawChart);
+
+<button id="change-chart"></button>
 
 
+<script type="text/javascript"> 
+
+google.setOnLoadCallback(drawChart);
 var button = document.getElementById('change-chart');
 
 
 function drawChart() {var data = google.visualization.arrayToDataTable([
-['Local Time', 'Temperature C', 'Hyumidity %', 'Pressure mmHg'],
-[new Date(1483824360000),24.48,76.10,1004.50],
-[new Date(1483824363000),24.48,76.60,1004.45],
-[new Date(1483824366000),24.48,76.70,1004.47],
-[new Date(1483824370000),24.49,76.80,1004.52],
-[new Date(1483824373000),24.48,76.00,1004.42],
-[new Date(1483824377000),24.48,76.60,1004.48],
-[new Date(1483824380000),24.48,76.70,1004.47],
-[new Date(1483824383000),24.49,76.90,1004.48],
-[new Date(1483824387000),24.49,76.80,1004.52],
-[new Date(1483824390000),24.49,76.80,1004.46],
-[new Date(1483824394000),24.49,76.90,1004.51],
-[new Date(1483824397000),23.49,76.90,1004.54],
-[new Date(1483824400000),24.49,76.90,1004.57],
-[new Date(1483824404000),24.50,76.00,1004.56],
-[new Date(1483824407000),24.49,76.90,1004.48],
-[new Date(1483824411000),24.50,76.00,1004.50],
-[new Date(1483824414000),24.52,76.40,1004.58],
-[new Date(1483824417000),24.51,76.20,1004.56],
-[new Date(1483824421000),24.50,76.00,1004.53],
+['Local Time', 'Temperature C', 'Hyumidity %', 'Pressure mmHg', 'CO2 ppm'],
+
+[new Date(1483824360000),24.48, 0.762,1004.50,502],
+[new Date(1483824363000),24.48, 0.765,1004.45,501],
+[new Date(1483824366000),24.48, 0.762,1004.47,506],
+[new Date(1483824370000),24.49, 0.761,1004.52,503],
+[new Date(1483824373000),24.48, 0.768,1004.42,500],
+[new Date(1483824377000),24.48, 0.763,1004.48,504],
+[new Date(1483824380000),24.48, 0.762,1004.47,506],
+[new Date(1483824383000),24.49, 0.760,1004.48,513],
+[new Date(1483824387000),24.49, 0.768,1004.52,511],
+[new Date(1483824390000),24.49, 0.769,1004.46,509],
+[new Date(1483824394000),24.49, 0.766,1004.51,506],
+[new Date(1483824397000),23.49, 0.763,1004.54,503],
+[new Date(1483824400000),24.49, 0.761,1004.57,500],
+[new Date(1483824404000),24.50, 0.764,1004.56,502],
+[new Date(1483824407000),24.49, 0.769,1004.48,503],
+[new Date(1483824411000),24.50, 0.761,1004.50,504],
+[new Date(1483824414000),24.52, 0.767,1004.58,505],
+[new Date(1483824417000),24.51, 0.763,1004.56,509],
+[new Date(1483824421000),24.50, 0.761,1004.53,504],
 ]);
 
 
 function drawChartCelsius() {var tempCview = new google.visualization.DataView(data);
     tempCview.setColumns([0,1]);
     chart.draw(tempCview, optionsCelsius);
-    button.innerText = 'Change to Hyumidity';
-    button.onclick = drawChartHyumidity;}
+    button.innerText = 'Change to Humidity';
+    button.onclick = drawChartHumidity;}
 
-
-function drawChartHyumidity() {var tempHum = new google.visualization.DataView(data);
-    tempHum.setColumns([0,2]);
-    chart.draw(tempHum, optionsHyumidity);
+function drawChartHumidity() {var tempHyum = new google.visualization.DataView(data);
+    tempHyum.setColumns([0,2]);
+    chart.draw(tempHyum, optionsHumidity);
     button.innerText = 'Change to Pressure';
     button.onclick = drawChartPressure;}
 
@@ -47,33 +55,55 @@ function drawChartHyumidity() {var tempHum = new google.visualization.DataView(d
 function drawChartPressure() {var tempPressureView = new google.visualization.DataView(data);
     tempPressureView.setColumns([0,3]);
     chart.draw(tempPressureView, optionsPressure);
+    button.innerText = 'Change to CO2';
+    button.onclick = drawChartCO2;}
+
+function drawChartCO2() {var tempCO2View = new google.visualization.DataView(data); 
+    tempCO2View.setColumns([0,4]);
+    chart.draw(tempCO2View, optionsCO2);
     button.innerText = 'Change to Celsius';
     button.onclick = drawChartCelsius;}
 
 
 var formatter = new google.visualization.DateFormat({ formatType: 'short',timeZone: 0});
   formatter.format(data, 0);
+
+
 // Set X-Axis Labels
 var xTicks = [];
-
-
 for (var i = 0; i < data.getNumberOfRows(); i++) {
    xTicks.push({
     v: data.getValue(i, 0),
     f: data.getFormattedValue(i, 0) });
-
 }
 
-var optionsPressure = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## mmHg"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in mmHg' };
+var optionsPressure = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText:true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##,### mmHg"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in mmHg' };
 
-var optionsCelsius = {'height': 320,chartArea:{top:20,  height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## C"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };
 
-var optionsHyumidity = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"##.## %"},series:{1:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Hyumidity in %'};
+var optionsCelsius = {'height': 320,chartArea:{top:20,  height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"# C"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };
 
+
+var optionsHumidity = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"# %"},series:{1:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Humidity in %'};
+
+
+var optionsCO2 = {'height': 320,chartArea:{top:20, height:"60%"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:"# ppm"},series:{1:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'CO2 in ppm'};
 
 
 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));drawChartCelsius();}
 </script>
+
+
 <font color="#000000"><body><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<h1>Temperature and Pressure Chart</h1><a href="/">back</a><BR><BR>
-<div id="curve_chart" style="width: 800px; height: 300px"></div><BR><BR>Number of readings=19<BR>Max allowed readings=936<BR><BR><BR>First reading at : <BR>Most recent reading : <BR></body></html>
+<!--<h1>Meteo station</h1>
+
+
+
+<a href="/">back</a><BR><BR>-->
+
+<div id="curve_chart" style="width: 800px; height: 300px"></div>
+
+
+
+<!-- <BR><BR>Number of readings=19<BR>Max allowed readings=936<BR><BR><BR>First reading at : <BR>Most recent reading : <BR>-->
+
+</body></html>
