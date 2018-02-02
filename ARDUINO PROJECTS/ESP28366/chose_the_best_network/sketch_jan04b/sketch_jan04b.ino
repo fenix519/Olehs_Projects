@@ -42,7 +42,6 @@ WiFiServer server(80);
 
 void setup() 
 {
-
   int n=0;
   bool acess_flag_a=false;
   network_type * router_acess_point;
@@ -86,7 +85,6 @@ void setup()
        Serial.println("");
 
        
-
        WiFi.begin(ssid, password); 
        while (WiFi.status() != WL_CONNECTED) 
        {delay(500);
@@ -112,10 +110,6 @@ void setup()
 
   Serial.println("Setup done");
 }
-
-
-
-
 
 
 
@@ -146,7 +140,11 @@ uint32_t freeRAM;
   Serial.println(" bytes ");
   Serial.println("\n\n\n");
 
-  client.println(generateHTML());
+  //client.println(generateHTML());
+
+
+  chart_generator(client);
+  
   //client.close();
   delay(0.5);
   Serial.println("Client disconnected");
@@ -193,7 +191,6 @@ return(buf);
 }
 
 
-
 void sweep_points(network_type* a, network_type* b)
 {  
   String SSID_buffer = "";
@@ -218,7 +215,6 @@ void sweep_points(network_type* a, network_type* b)
  }
 
 
-
 void sort(network_type buf[], int *n)
 {
   for(int x = 0; x < *n; x++)
@@ -227,9 +223,6 @@ void sort(network_type buf[], int *n)
      if((buf[y].Power) < (buf[y+1].Power))
        sweep_points( &buf[y], &buf[y+1]);
 }
-
-
-
 
 network_type* chose_best(network_type envirument_network[], network_type acess_list[], int* n ,bool * is_acess)
 {
@@ -249,63 +242,88 @@ network_type* chose_best(network_type envirument_network[], network_type acess_l
   return(&acess_list[f_number]);
 }
 
-//char* string2char(String command){
-//    if(command.length()!=0){
-//        char *p = const_cast<char*>(command.c_str());
-//        return p;
-//    }
-//}
 
 
 
 
-String generateHTML()
+
+
+void chart_generator(WiFiClient client)
 {
-String myHTML;
-String balast; 
-uint32_t freeRAM;
 
-myHTML="";
-myHTML+="<html>";
-myHTML += "  <head> ";
-myHTML += "<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>";
-myHTML += "   <script type=\"text/javascript\">";
-myHTML += "      google.charts.load('current', {'packages':['gauge']});";
-myHTML += "      google.charts.setOnLoadCallback(drawChart);";
-myHTML += "      function drawChart() {";
-myHTML += "";
-myHTML += "        var data = google.visualization.arrayToDataTable([";
-myHTML += "          ['Label', 'Value'],";
-myHTML += "          ['Memory', MEM_VALUE]";
-myHTML += "        ]);";
-myHTML += "";
-myHTML += "        var options = {";
-myHTML += "          width: 400, height: 120,";
-myHTML += "          redFrom: 90, redTo: 200,";
-myHTML += "          yellowFrom:75, yellowTo: 90,";
-myHTML += "          minorTicks: 5";
-myHTML += "        };";
-myHTML += "";
-myHTML += "        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));";
-myHTML += "";
-myHTML += "        chart.draw(data, options);      ";
-myHTML += "        ";
-myHTML += "      }";
-myHTML += "    </script>";
-myHTML += "  </head>";
-myHTML += "  <body>";
-myHTML += "    <div id=\"chart_div\" style=\"width: 400px; height: 120px;\"></div>";
-myHTML += "  </body>";
-myHTML += "</html>";
+    float timeStamp[] = {0,1,2,3,4,5,6,7,8,9};
+    float tempC[]     = {1,1,1,1,1,1,1,1,1,1};
+    float tempHum[]   = {1,1,1,1,1,1,1,1,1,1};
+    float tempPress[] = {2,2,2,2,2,2,2,2,2,2};
+    float tempCo2[]   = {2,2,2,2,2,2,2,2,2,2};
 
-freeRAM = system_get_free_heap_size();
-Serial.print(" freeRAM :");
-Serial.print(freeRAM);
-Serial.println(" bytes ");
+    int count = int(sizeof(timeStamp)/ sizeof(float));
+    int numberOfRows = 10;
 
-//sensor.requestTemperatures(); 
-myHTML.replace("MEM_VALUE", "32");
-return(myHTML);
+    String htmlContent;
+  
+    //Standard html header stuff here.
+    htmlContent = ("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n"); 
+    htmlContent += ("<html><head><title>Meteo station</title>\n");
+
+    //load google charts and create a button
+    htmlContent += ("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}\"></script>\n");
+    htmlContent += ("<button id=\"change-chart\"></button>");
+    htmlContent += ("<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);\n");
+    htmlContent += ("var button = document.getElementById('change-chart');");
+
+    //Create a function to draw the chart and then add the data into a table
+    htmlContent += ("function drawChart() {var data = google.visualization.arrayToDataTable([\n");
+    htmlContent += ("['Local Time', 'Temperature C', 'Hyumidity %', 'Pressure mmHg', 'CO2 ppm'],\n");
+    //Send what we have to the client (web browser)
+    client.print(htmlContent);
+
+    //Here we loop through the temp and pressure data to place it into the html source code
+    for (int i = 0; i< count ; i++)
+    {
+      htmlContent = ("[new Date(" + String(timeStamp[i]) +  "000)," + String(tempC[i]) +  "," + String(tempHum[i]) + "," + String(tempPress[i])+ "," + String(tempCo2[i]) + "],\n");
+      client.print(htmlContent);
+    }
+    htmlContent = ("]);\n");
+
+    //Continue to build the rest of the web page.  Here we create three function that the buttons uses to dsiplay the chart data.
+    htmlContent += ("function drawChartCelsius() {var tempCview = new google.visualization.DataView(data);\n tempCview.setColumns([0,1]);\n chart.draw(tempCview, optionsCelsius);\n button.innerText = 'Change to Humidity';\n  button.onclick = drawChartHumidity;}\n");
+    htmlContent += ("function drawChartHumidity() {var tempHyum = new google.visualization.DataView(data);\n tempHyum.setColumns([0,2]);\n chart.draw(tempHyum, optionsHumidity);\n button.innerText = 'Change to Pressure';\n button.onclick = drawChartPressure;}\n");
+    htmlContent += ("function drawChartPressure() {var tempPressureView = new google.visualization.DataView(data);\n tempPressureView.setColumns([0,3]);\n chart.draw(tempPressureView, optionsPressure);\n button.innerText = 'Change to CO2';\n button.onclick = drawChartCO2;}\n");
+    htmlContent += ("function drawChartCO2() {var tempCO2View = new google.visualization.DataView(data);\n tempCO2View.setColumns([0,4]);\n chart.draw(tempCO2View, optionsCO2);\n button.innerText = 'Change to Celsius';\n button.onclick = drawChartCelsius;}\n");
+
+    //specify date format and then update x labels with this time format
+    htmlContent += ("var formatter = new google.visualization.DateFormat({ formatType: 'short',timeZone: 0});\n  formatter.format(data, 0);\n");
+    htmlContent += ("// Set X-Axis Labels\nvar xTicks = [];\n");
+    htmlContent += ("for (var i = 0; i < data.getNumberOfRows(); i++) {\n");
+    htmlContent += ("   xTicks.push({\n    v: data.getValue(i, 0),\n    f: data.getFormattedValue(i, 0) });\n}\n");
+
+    //Here are three chart options used for each chart.  E.g. colour, chart title, etc..
+
+
+    htmlContent += ("var optionsPressure = {'height': 320,chartArea:{top:20, height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##,### mmHg\"},series:{1:{curveType:'function'},0:{color:'orange'}},legend:{position: 'none'},title:'Pressure in mmHg' };\n");  
+    htmlContent += ("var optionsCelsius = {'height': 320,chartArea:{top:20,  height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##.## C\"},series:{1:{curveType:'function'},0:{color:'red'}},legend:{position: 'none'},title:'Temperature in Celsius' };\n");
+    htmlContent += ("var optionsHumidity = {'height': 320,chartArea:{top:20, height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##.## %\"},series:{0:{curveType: 'function'},0:{color:'Blue'}},legend:{position: 'none'},title: 'Humidity in %'};\n");
+    htmlContent += ("var optionsCO2 = {'height': 320,chartArea:{top:20, height:\"60%\"},hAxis:{gridlines:{color:'transparent'},ticks:xTicks,slantedText: true,slantedTextAngle :70,textStyle:{fontSize: 11} },vAxis:{format:\"##.## ppm\"},series:{0:{curveType: 'function'},0:{color:'gray'}},legend:{position: 'none'},title: 'CO2 in ppm'};\n");
+    
+    client.print(htmlContent);    
+  
+    //Draw chart 
+    htmlContent = ("var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));drawChartCelsius();}\n");
+    htmlContent += ("</script>\n");
+
+    //Page heading
+    htmlContent += ("<font color=\"#000000\"><body><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\">\n");
+    htmlContent += ("<div id=\"curve_chart\" style=\"width: 800px; height: 300px\"></div>");
+
+//    //Display the data and time for first and last reading
+//    htmlContent += ("<BR><BR>First reading at : ");
+//    timeAndDate(timeStamp[0],htmlContent);    
+//    htmlContent += ("<BR>Most recent reading : ");
+//    timeAndDate(timeStamp[count-1],htmlContent);     
+//    htmlContent += ("<BR></body></html>\n");
+    client.print(htmlContent);
 }
+
 
 
