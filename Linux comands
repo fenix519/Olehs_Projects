@@ -1,0 +1,57 @@
+su - change user to root;
+
+blkid - show phisical discs;
+
+mount - mount disk
+
+pwd -Print Current Working Directory with pwd command
+
+rpm –ivh packagename.rpm   - instal rpm packets
+
+tar -xvf VuzeInstaller.tar.bz2 
+
+chmod -chenge premisions of file/directory
+
+ls -l filename - show premisions of file
+
+df - disc space 
+
+dnf search 'string'  - search program
+
+dnf remove 'string' - remove program
+
+printenv - print envirument
+
+gtkterm - serial port scanner
+
+lsblk - disc utility 
+
+
+
+0ad - Good strategy game
+(zero - 0ad)
+instal - dnf install 0ad
+run - 0ad
+deinstall dnf remove 0ad 
+
+dnf system-upgrade reboot
+
+lsusb - shows pluged usb devises
+
+dnf clean packages
+
+
+%  /usr/sbin/dmidecode -t baseboard
+This will give details of the motherboard
+% /usr/sbin/dmidecode -t processor
+This will dump the information about the processor.
+Other keywords which are available which can be used as options for ‘t’ are
+    bios
+    system
+    chassis
+    memory
+    cache
+    connector
+    slot
+
+
