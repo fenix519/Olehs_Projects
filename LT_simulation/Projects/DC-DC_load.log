@@ -1,0 +1,178 @@
+Circuit: * C:\Users\ohumench\Documents\LT_simulation\Projects\DC-DC_load.asc
+
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+vernier = 0.5
+Gmin = 1.67772
+vernier = 0.25
+vernier = 0.333333
+vernier = 0.166667
+vernier = 0.0833333
+Gmin = 1.21373
+vernier = 0.0416667
+vernier = 0.0208333
+Gmin = 1.13483
+vernier = 0.0277778
+vernier = 0.0138889
+vernier = 0.00694444
+Gmin = 1.10956
+vernier = 0.00925925
+vernier = 0.0123457
+vernier = 0.00617283
+vernier = 0.00308642
+Gmin = 1.09343
+vernier = 0.00411522
+Gmin = 1.08336
+vernier = 0.00548696
+vernier = 0.00274348
+vernier = 0.00137174
+Gmin = 1.07633
+vernier = 0.00182899
+vernier = 0.00243865
+Gmin = 1.07134
+vernier = 0.00325153
+vernier = 0.00162576
+vernier = 0.000812882
+Gmin = 1.06743
+vernier = 0.00108384
+vernier = 0.00144512
+Gmin = 1.06466
+vernier = 0.00192683
+Gmin = 1.06018
+vernier = 0.00256911
+vernier = 0.00128455
+vernier = 0.000642277
+vernier = 0.000856369
+Gmin = 1.0586
+vernier = 0.00114182
+Gmin = 1.05596
+vernier = 0.00152243
+vernier = 0.000761216
+vernier = 0.000570912
+vernier = 0.000761216
+Gmin = 1.0547
+vernier = 0.00101495
+Gmin = 1.05236
+vernier = 0.00135327
+vernier = 0.000676636
+vernier = 0.000507477
+vernier = 0.000676636
+Gmin = 1.05125
+vernier = 0.000902181
+Gmin = 1.04918
+vernier = 0.00120291
+vernier = 0.000601454
+vernier = 0.000451091
+vernier = 0.000601454
+Gmin = 1.04819
+vernier = 0.000801938
+vernier = 0.000400969
+Gmin = 0
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
+
+Semiconductor Device Operating Points:
+                        --- Diodes ---
+Name:    d:u4:8      d:u4:6      d:u4:7      d:u4:5      d:u4:18
+Model:    u4:db      u4:dnc      u4:dnc       u4:dn       u4:dy
+Id:     -1.80e-11    8.85e-11    8.85e-11    8.85e-11   -1.74e-11
+Vd:     -1.80e+01    2.35e-01    2.35e-01    2.35e-01   -1.74e+01
+Req:     1.00e+12    2.93e+08    2.93e+08    2.93e+08    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u4:16     d:u4:14     d:u4:13     d:u4:20     d:u4:19
+Model:    u4:dy       u4:dx       u4:dx       u4:dx       u4:dx
+Id:     -1.27e-05   -5.51e-10   -5.39e-10   -8.99e-10   -6.19e-10
+Vd:     -5.03e+01   -5.51e+02   -5.39e+02   -8.99e+02   -6.19e+02
+Req:     2.03e+03    1.00e+12    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u4:15     d:u4:17     d:u4:10     d:u4:12     d:u4:11
+Model:    u4:dx       u4:dx       u4:dx       u4:dx       u4:dx
+Id:     -3.23e-11    1.28e-05   -5.25e-08   -5.25e-08   -5.25e-08
+Vd:     -3.23e+01    6.02e-01   -5.25e+04   -5.25e+04   -5.25e+04
+Req:     1.00e+12    2.02e+03    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u4:9      d:u4:4      d:u4:2      d:u4:3      d:u4:1
+Model:    u4:dx       u4:dx       u4:dx       u4:dx       u4:dx
+Id:     -5.25e-08   -9.00e-12   -9.00e-12   -9.00e-12   -9.00e-12
+Vd:     -5.25e+04   -9.00e+00   -9.00e+00   -9.00e+00   -9.00e+00
+Req:     1.00e+12    1.00e+12    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u1:8      d:u1:6      d:u1:7      d:u1:5      d:u1:18
+Model:    u1:db      u1:dnc      u1:dnc       u1:dn       u1:dy
+Id:     -1.80e-11    8.85e-11    8.85e-11    8.85e-11   -6.65e-04
+Vd:     -1.80e+01    2.35e-01    2.35e-01    2.35e-01   -5.04e+01
+Req:     1.00e+12    2.93e+08    2.93e+08    2.93e+08    3.89e+01
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u1:16     d:u1:14     d:u1:13     d:u1:20     d:u1:19
+Model:    u1:dy       u1:dx       u1:dx       u1:dx       u1:dx
+Id:     -1.73e-11   -5.43e-10   -5.47e-10   -5.78e-10   -9.37e-10
+Vd:     -1.73e+01   -5.43e+02   -5.47e+02   -5.78e+02   -9.37e+02
+Req:     1.00e+12    1.00e+12    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u1:15     d:u1:17     d:u1:10     d:u1:12     d:u1:11
+Model:    u1:dx       u1:dx       u1:dx       u1:dx       u1:dx
+Id:      6.65e-04   -3.24e-11   -5.25e-08   -5.25e-08   -5.25e-08
+Vd:      7.04e-01   -3.24e+01   -5.25e+04   -5.25e+04   -5.25e+04
+Req:     3.89e+01    1.00e+12    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+Name:    d:u1:9      d:u1:4      d:u1:2      d:u1:3      d:u1:1
+Model:    u1:dx       u1:dx       u1:dx       u1:dx       u1:dx
+Id:     -5.25e-08   -9.00e-12   -9.00e-12   -9.00e-12   -9.00e-12
+Vd:     -5.25e+04   -9.00e+00   -9.00e+00   -9.00e+00   -9.00e+00
+Req:     1.00e+12    1.00e+12    1.00e+12    1.00e+12    1.00e+12
+CAP:     0.00e+00    0.00e+00    0.00e+00    0.00e+00    0.00e+00
+
+                        --- Bipolar Transistors ---
+Name:       q3          q2          q1
+Model:    ksa1220     ksc2690     ksc2690
+Ib:      -1.33e-03    2.55e-05    3.16e-03
+Ic:      -3.23e-01    3.13e-03    3.21e-01
+Vbe:     -7.72e-01    6.11e-01    7.73e-01
+Vbc:      7.26e+00   -7.61e+00   -2.25e-01
+Vce:     -8.03e+00    8.22e+00    9.98e-01
+BetaDC:   2.43e+02    1.23e+02    1.02e+02
+Gm:       1.12e+01    1.21e-01    1.10e+01
+Rpi:      1.95e+01    1.03e+03    8.85e+00
+Rx:       1.17e+00    2.98e+00    2.95e+00
+Ro:       2.89e+02    1.82e+05    1.66e+00
+Cbe:      5.90e-10    6.41e-10    7.02e-10
+Cbc:      2.00e-11    9.12e-12    6.28e-11
+Cjs:      0.00e+00    0.00e+00    0.00e+00
+BetaAC:   2.18e+02    1.25e+02    9.76e+01
+Cbx:      2.04e-11    9.29e-12    6.46e-11
+Ft:       2.82e+09    2.92e+07    2.12e+09
+
+
+
+Date: Fri Jun 15 09:58:43 2018
+Total elapsed time: 2.080 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 11033
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 152
+fillins = 221
+solver = Normal
+Thread vector: 10.8/6.8[3] 0.0/0.0[0] 2.4/3.5[1] 0.5/1.2[1]  2592/500
+Matrix Compiler1: 14.92 KB object code size
+Matrix Compiler2: 14.89 KB object code size  2.3/4.7/[1.3]
+

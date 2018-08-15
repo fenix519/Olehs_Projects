@@ -1,0 +1,43 @@
+
+**** 03/20/17 15:41:01 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\Users\rosty_000\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice\17.2.0\PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source PFET_INPUT_CHARGE
+V_V1         N14947 0 5Vdc
+X_U1         N15081 N15043 N14947 PMOS_SSM6P49NU
+R_R1         0 N15081  10 TC=0,0 
+I_I1         N15043 N14947 DC 0Adc AC 0Aac
++PULSE 0 2 100n 1n 1n 100n 1u
+
+**** RESUMING bias.cir ****
+.END
+
+ERROR(ORPSIM-15108): Subcircuit PMOS_SSM6P49NU used by X_U1 is undefined
+

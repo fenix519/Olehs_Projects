@@ -1,0 +1,26 @@
+Circuit: * O:\SPICE\Projects\PFETchar_model.asc
+
+Direct Newton iteration for .op point succeeded.
+.step vc=3.653
+.step vc=3.98
+.step vc=4.25
+
+Date: Thu Dec 14 18:47:13 2017
+Total elapsed time: 3.428 seconds.
+
+tnom = 27
+temp = 25
+method = modified trap
+totiter = 23247
+traniter = 23219
+tranpoints = 11372
+accept = 11281
+rejected = 91
+matrix size = 83
+fillins = 32
+solver = Normal
+Thread vector: 40.0/32.2[2] 5.1/3.4[2] 2.8/1.7[2] 0.4/1.0[1]  2592/500
+Matrix Compiler1: 14.98 KB object code size  2.6/1.1/[1.1]
+Matrix Compiler2: 9.86 KB object code size  0.8/0.9/[0.5]
+
+

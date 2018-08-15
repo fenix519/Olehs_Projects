@@ -1,0 +1,20 @@
+* source PFET_INPUT_CHARGE
+V_V1         N20884 0 10Vdc
+R_R1         0 N15081  100 TC=0,0 
+V_V3         VDD 0 5Vdc
+V_V4         VSS 0 0Vdc
+X_Q2         N21473 N26713 N20514 awbbc169 PARAMS:                             
++                
+R_R6         N20514 0  10k TC=0,0 
+V_V7         N17903 0  
++PULSE 0 0.5 500u 1n 1n 500u 1m
+V_V8         N23888 0  
++PULSE 5 0 10u 1n 1n 990u 1m
+X_M2         N21473 N25425 N20884 PMOS_TPC6130
+X_Q3         N25425 N25376 0 awbbc169 PARAMS:                                  
++           
+R_R7         N20884 N25425  10k TC=0,0 
+R_R8         N25376 0  10k TC=0,0 
+R_R9         N23888 N25376  10k TC=0,0 
+X_M3         N15081 N21473 N20884 PMOS_TPC6130
+X_U2         N17903 N20514 VDD VSS N26713 LF411

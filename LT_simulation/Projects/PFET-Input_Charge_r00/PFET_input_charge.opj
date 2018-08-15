@@ -1,0 +1,205 @@
+(ExpressProject "PFET_input_charge"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\analog.olb"
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\analog.olb")
+        (Type "Schematic Library"))
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\breakout.olb"
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\breakout.olb")
+        (Type "Schematic Library"))
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\source.olb"
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\source.olb")
+        (Type "Schematic Library"))
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\sourcstm.olb"
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\sourcstm.olb")
+        (Type "Schematic Library"))
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\special.olb"
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\special.olb")
+        (Type "Schematic Library")))
+    (NoModify)
+    (File "pfet_input_charge.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (ANNOTATE_Scope "0")
+    (ANNOTATE_Mode "1")
+    (ANNOTATE_Action "1")
+    (ANNOTATE_Reset_References_to_1 "FALSE")
+    (ANNOTATE_No_Page_Number_Change "TRUE")
+    (ANNOTATE_Property_Combine "{Value}{Source Package}")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs"
+    (File ".\pfet_input_charge-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Model Libraries"
+      (Sort User)
+      (File "..\tpc6130.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName "..\tpc6130.lib"))
+      (File
+         "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\infineon_optimos_p.olb"
+        (Type "PSpiceLibrary")
+        (DisplayName
+           "D:\Programs\Cadence\SPB_17.2\tools\capture\library\pspice\infineon_optimos_p.olb"))
+      (File "..\ssm6p49nu_pspice_20140521.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName "..\ssm6p49nu_pspice_20140521.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User))
+    (Folder "Simulation Profiles"
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\pfet_input_charge-pspicefiles\schematic1\bias.sim"
+        (DisplayName "SCHEMATIC1-bias")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\pfet_input_charge-pspicefiles\schematic1\pfet charge.sim"
+        (DisplayName "SCHEMATIC1-PFET charge")
+        (Type "PSpice Profile"))
+      (ActiveProfile
+         ".\pfet_input_charge-pspicefiles\schematic1\pfet charge.sim")))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (LF411
+      (FullPartName "LF411.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\EVAL.OLB")
+      (DeviceIndex "0"))
+    (OPA369
+      (FullPartName "OPA369.Normal")
+      (LibraryName "D:\WORK\CHIPS\PA73_PFET\OPA369_PSPICE_AIO\OPA369.OLB")
+      (DeviceIndex "0"))
+    (MCP6031
+      (FullPartName "MCP6031.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\MICROCHIP_OPAMP.OLB")
+      (DeviceIndex "0"))
+    (MCP6041
+      (FullPartName "MCP6041.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\MICROCHIP_OPAMP.OLB")
+      (DeviceIndex "0"))
+    (PMOS_SSM6P49NU
+      (FullPartName "PMOS_SSM6P49NU.Normal")
+      (LibraryName "D:\WORK\CHIPS\PA73_PFET\SSM6P49NU_PSPICE_20140521.OLB")
+      (DeviceIndex "0"))
+    (BSC022N03S_L1
+      (FullPartName "BSC022N03S_L1.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\INFINEON_OPTIMOS2.OLB")
+      (DeviceIndex "0"))
+    (BSO301SN_L1
+      (FullPartName "BSO301SN_L1.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\INFINEON_OPTIMOS_N.OLB")
+      (DeviceIndex "0"))
+    (VPULSE
+      (FullPartName "VPULSE.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (IPULSE
+      (FullPartName "IPULSE.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (BC169
+      (FullPartName "BC169.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ADVANLS\BJN.OLB")
+      (DeviceIndex "0"))
+    (BC159
+      (FullPartName "BC159.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ADVANLS\BJP.OLB")
+      (DeviceIndex "0"))
+    (C
+      (FullPartName "C.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (BC107
+      (FullPartName "BC107.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ADVANLS\BJN.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (PMOS_TPC6130
+      (FullPartName "PMOS_TPC6130.Normal")
+      (LibraryName "D:\WORK\CHIPS\PA73_PFET\TPC6130.OLB")
+      (DeviceIndex "0"))
+    (BSK204SP_L1
+      (FullPartName "BSK204SP_L1.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\INFINEON_OPTIMOS_P.OLB")
+      (DeviceIndex "0"))
+    (BSA223SP_L1
+      (FullPartName "BSA223SP_L1.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\INFINEON_OPTIMOS_P.OLB")
+      (DeviceIndex "0"))
+    (BSA223SP
+      (FullPartName "BSA223SP.Normal")
+      (LibraryName
+         "D:\PROGRAMS\CADENCE\SPB_17.2\TOOLS\CAPTURE\LIBRARY\PSPICE\INFINEON_OPTIMOS_P.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (L
+      (FullPartName "L.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (VSTIM
+      (FullPartName "VSTIM.Normal")
+      (LibraryName "..\..\LIBRARY\PSPICE\SOURCSTM.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory "D:\WORK\CHIPS\PA73_PFET\OPA369_PSPICE_AIO")
+  (MPSSessionName "nazar")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "O:\SPICE\Projects\PFET-Input_Charge_r00\pfet_input_charge.dsn")
+      (Path "Design Resources"
+         "O:\SPICE\Projects\PFET-Input_Charge_r00\pfet_input_charge.dsn"
+         "SCHEMATIC1")
+      (Path "Outputs")
+      (Select "Design Resources"
+         "O:\SPICE\Projects\PFET-Input_Charge_r00\pfet_input_charge.dsn"
+         "SCHEMATIC1" "PAGE1"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 0 200 0 385"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -31 52 1688 52 511")
+        (Scroll "0 235")
+        (Zoom "174")
+        (Occurrence "/"))
+      (Path "O:\SPICE\PROJECTS\PFET-INPUT_CHARGE_R00\PFET_INPUT_CHARGE.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

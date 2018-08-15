@@ -1,0 +1,65 @@
+
+**** 04/25/17 11:22:00 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-PFET charge"  [ O:\SPICE\PFET-Input_Charge_r00\pfet_input_charge-pspicefiles\schematic1\pfet charge.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "PFET charge.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "O:/SPICE/tpc6130.lib" 
+----------------------------$
+ERROR(ORPSIM-16276): Can't find library
+.LIB "D:/Programs/Cadence/SPB_17.2/tools/capture/library/pspice/infineon_optimos_p.olb" 
+----------------------------------------------------------------------------------------$
+ERROR(ORPSIM-16276): Can't find library
+.LIB "O:/SPICE/ssm6p49nu_pspice_20140521.lib" 
+* From [PSPICE NETLIST] section of C:\Users\nazar\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice\17.2.0\PSpice.ini file:
+----------------------------------------------$
+ERROR(ORPSIM-16276): Can't find library
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.TRAN  0 2m 0 1u 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source PFET_INPUT_CHARGE
+V_V1         N20884 0 10Vdc
+R_R1         0 N15081  100 TC=0,0 
+V_V3         VDD 0 5Vdc
+V_V4         VSS 0 0Vdc
+X_Q2         N21473 N26713 N20514 awbbc169 PARAMS:                             
++                
+R_R6         N20514 0  10k TC=0,0 
+V_V7         N17903 0  
++PULSE 0 0.5 500u 1n 1n 500u 1m
+V_V8         N23888 0  
++PULSE 5 0 10u 1n 1n 990u 1m
+X_M2         N21473 N25425 N20884 PMOS_TPC6130
+X_Q3         N25425 N25376 0 awbbc169 PARAMS:                                  
++           
+R_R7         N20884 N25425  10k TC=0,0 
+R_R8         N25376 0  10k TC=0,0 
+R_R9         N23888 N25376  10k TC=0,0 
+X_M3         N15081 N21473 N20884 PMOS_TPC6130
+X_U2         N17903 N20514 VDD VSS N26713 LF411
+
+**** RESUMING "PFET charge.cir" ****
+.END
+

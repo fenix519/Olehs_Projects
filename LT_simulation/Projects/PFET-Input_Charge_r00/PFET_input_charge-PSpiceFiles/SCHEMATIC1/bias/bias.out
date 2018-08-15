@@ -1,0 +1,256 @@
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "D:/WORK/CHIPS/PA73_PFET/ssm6p49nu_pspice_20140521.lib" 
+* From [PSPICE NETLIST] section of C:\Users\rosty_000\AppData\Roaming\SPB_Data\cdssetup\OrCAD_PSpice\17.2.0\PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.OP
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source PFET_INPUT_CHARGE
+V_V1         N14947 0 5Vdc
+X_U1         N15081 N15043 N14947 PMOS_SSM6P49NU
+R_R1         0 N15081  10 TC=0,0 
+I_I1         N15043 N14947 DC 0Adc AC 0Aac
++PULSE 0 2 100n 1n 1n 100n 1u
+
+**** RESUMING bias.cir ****
+.END
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.DDS1       X_U1.DDS2       X_U1.DGS1       X_U1.DGS2       
+  T_Measured   25              25              25              25            
+   T_Current   27              27              27              27            
+          IS   15.131000E-12   15.131000E-12    1.000000E-15    1.000000E-15 
+           N    1.2852          1.2852                                       
+          BV   20                                                            
+         IBV    1.000000E-03                                                 
+          RS     .045056         .045056                                     
+         CJO    1.000000E-15    1.000000E-15                                 
+
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U1.smsmosfet  
+               PMOS            
+  T_Measured   25            
+   T_Current   27            
+       LEVEL    5            
+           L  100.000000E-06 
+           W  100.000000E-06 
+         VTO    -.5          
+          KP  138.125800E-06 
+       GAMMA    1            
+         PHI     .7          
+      LAMBDA     .5          
+          IS   10.000000E-15 
+          JS  787.200000E-09 
+          PB     .61069      
+        PBSW    1            
+          CJ  744.280000E-06 
+        CJSW    1.000000E-12 
+          MJ     .73282      
+        CGSO    1.528200E-09 
+        CGDO   17.074000E-12 
+        CGBO    1.000000E-12 
+         TOX   15.000000E-09 
+          XJ  150.000000E-09 
+       DELTA     .021384     
+      DIOMOD    1            
+         VFB    0            
+          K1     .5          
+          K2    0            
+        LETA     .1          
+        WETA     .25         
+          U0    2.253814E+03 
+        TEMP    0            
+         VDD    5            
+       XPART    0            
+        VTH0    -.80021      
+          UA  518.540000E-12 
+          UB  587.000000E-21 
+          UC  -45.600000E-12 
+        VSAT  551.983000E+03 
+        RDSW    5.450610E+03 
+        VOFF    0            
+     NFACTOR     .93226      
+        PCLM    1.2781       
+      PDIBL2    9.084600E-03 
+      PSCBE1   42.400000E+09 
+      PSCBE2  100.000000E-09 
+          A0     .94096      
+          A1    0            
+          A2    1            
+       NPEAK  170.000000E+15 
+         KT1    -.2333       
+         UA1    4.310000E-09 
+         UB1   -7.610000E-18 
+         UC1  -56.000000E-12 
+        ETA0     .03434      
+        DSUB     .56         
+         UTE    -.55572      
+      MOBMOD    1            
+      CAPMOD    3            
+         AGS     .2269       
+        PRWG    0            
+         PRT    6.070990E+03 
+        CGSL    3.448700E-12 
+        CGDL    4.266000E-09 
+      CKAPPA    2.1588       
+         DLC    0            
+         DWC     .05944      
+          CF    1.000000E-12 
+     VERSION    3.3          
+       PBSWG    1            
+       MJSWG     .33         
+       CJSWG    1.000000E-12 
+         COX    2.302096E-03 
+          E0    1.000000E+12 
+
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N14947)    5.0000 (N15043)    5.0000 (N15081) 1.289E-06 (X_U1.10)    5.0000    
+
+(X_U1.22)    5.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -1.289E-07
+
+    TOTAL POWER DISSIPATION   6.44E-07  WATTS
+
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         X_U1.D0     X_U1.D1     X_U1.D2     X_U1.D3   
+MODEL        X_U1.DDS1   X_U1.DDS2   X_U1.DGS1   X_U1.DGS2 
+ID          -2.42E-11   -2.42E-11    1.78E-20   -1.78E-20 
+VD          -5.00E+00   -5.00E+00    1.69E-08   -1.69E-08 
+REQ          1.00E+12    1.00E+12    9.50E+11    9.50E+11 
+CAP          4.08E-16    4.08E-16    0.00E+00    0.00E+00 
+
+
+**** MOSFETS
+
+
+NAME         X_U1.M0               
+MODEL        X_U1.smsmosfet        
+ID          -1.29E-07             
+VGS         -3.38E-08             
+VDS         -5.00E+00             
+VBS          0.00E+00             
+VTH         -5.04E-01             
+VDSAT       -1.04E-01             
+Lin0/Sat1    1.00E+00             
+if           1.01E-05             
+ir           0.00E+00             
+TAU          2.65E-09             
+GM           2.75E-06             
+GDS          5.37E-10             
+GMB          2.23E-06             
+CBD          2.96E-11             
+CBS          1.50E-10             
+CGSOV        3.06E-10             
+CGDOV        3.41E-12             
+CGBOV        5.00E-18             
+CGS          1.52E-14             
+CGD          7.62E-15             
+CGB          1.02E-09             
+
+          JOB CONCLUDED
+
+**** 03/20/17 15:41:32 ******* PSpice Lite (March 2016) ******* ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ D:\WORK\CHIPS\PA73_PFET\PSPICE\PFET_input_charge-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .02
+

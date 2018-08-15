@@ -1,0 +1,84 @@
+Circuit: * C:\Users\ohumench\Documents\LT_simulation\Current source\DC-DC_load.asc
+
+Limiting rise time of source v3 to 5e-008
+Limiting fall time of source v3 to 5e-008
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+vernier = 0.5
+vernier = 0.25
+Gmin = 2.46724
+vernier = 0.333333
+Gmin = 1.19763
+vernier = 0.444444
+vernier = 0.222222
+vernier = 0.111111
+vernier = 0.0555555
+vernier = 0.0277778
+Gmin = 1.09552
+vernier = 0.0138889
+vernier = 0.00694444
+Gmin = 1.06559
+vernier = 0.00925925
+vernier = 0.00462963
+vernier = 0.00231481
+Gmin = 1.05091
+vernier = 0.00308642
+Gmin = 1.04364
+vernier = 0.00411522
+vernier = 0.00205761
+vernier = 0.00102881
+vernier = 0.00137174
+Gmin = 1.04087
+vernier = 0.00182899
+Gmin = 1.03671
+vernier = 0.00243865
+vernier = 0.00121932
+vernier = 0.000609662
+vernier = 0.000812882
+Gmin = 1.03524
+vernier = 0.00108384
+Gmin = 1.03279
+vernier = 0.00144512
+vernier = 0.000722562
+vernier = 0.000541921
+vernier = 0.000722562
+Gmin = 1.03162
+vernier = 0.000963415
+Gmin = 1.02945
+vernier = 0.00128455
+vernier = 0.000642277
+vernier = 0.000481707
+vernier = 0.000642276
+Gmin = 1.02842
+vernier = 0.000856368
+vernier = 0.000428184
+Gmin = 0
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
+
+
+Date: Thu Jun 21 20:09:14 2018
+Total elapsed time: 1.195 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 23098
+traniter = 14894
+tranpoints = 4688
+accept = 3656
+rejected = 1032
+matrix size = 108
+fillins = 144
+solver = Normal
+Thread vector: 9.9/4.0[2] 3.4/3.1[1] 2.0/2.6[1] 0.4/0.9[1]  2592/500
+Matrix Compiler1: 10.38 KB object code size  3.2/1.7/[0.8]
+Matrix Compiler2: 10.57 KB object code size  1.2/1.8/[0.5]
+
