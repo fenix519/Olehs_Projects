@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP ADL5610
+D 30-6000MHz RF/IF +18.4dB gain block, SOT-89
+K RF GAIN BLOCK
+F http://www.analog.com/media/en/technical-documentation/data-sheets/ADL5610.pdf
+$ENDCMP
+#
+$CMP SPF5189Z
+D 50MHz to 4000MHz, GaAs pHEMT low noise MMIC amplifier, SOT-89
+K RF GAIN BLOCK
+F www.qorvo.com/products/d/da001910
+$ENDCMP
+#
+#End Doc Library
