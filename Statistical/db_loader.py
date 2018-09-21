@@ -22,19 +22,32 @@ db.commit()
 db.close()
 
 
-def parser_float(in_str=""):
-
+def parser(in_str=""):
     result=0.0
-    m = re.search('(\d{2}:\d{2}:\d{2})|(\d{1}:\d{2}:\d{2})|(\d{2}:\d{2})', line.split("\t")[8])
+    m = re.search('((\d{1}:\d{2})'
+                  ' | \d{2}:\d{2}:\d{2})'
+                  ' | (\d{1}:\d{2}:\d{2}) '
+                  ' | (\d{2}:\d{2})',
+                   in_str)
+
+
+
     if m.group(0) != None:
+
         if len(m.group(0).split(":")) == 2:
-            value = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1]) / 60
-            data_all.append([line.split("\t")[3], value])
+            result = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1]) / 60
+
         if len(m.group(0).split(":")) == 3:
             if float(m.group(0).split(":")[0]) < 10:
-                value = float(m.group(0).split(":")[0]) * 60 + float(m.group(0).split(":")[1]) + float(
+                result = float(m.group(0).split(":")[0]) * 60 + float(m.group(0).split(":")[1]) + float(
                     m.group(0).split(":")[2]) / 60
-                data_all.append([line.split("\t")[3], value])
             if float(m.group(0).split(":")[0]) > 9:
-                value = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1]) / 60
-                data_all.append([line.split("\t")[3], value])
+                result = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1]) / 60
+    return( result )
+
+
+print(parser("1:14:25"))
+print(parser("3:18"))
+print(parser("32:23"))
+
+
