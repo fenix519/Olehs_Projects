@@ -2,6 +2,11 @@ import re
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+
+
+
+
 star_range = 32
 stop_range = 80
 
