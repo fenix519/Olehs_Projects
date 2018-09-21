@@ -1,0 +1,5 @@
+
+21.09.2018
+- creating LNA and selling on ebay
+- creating simple cable analizer 
+- creating one chanel osciloscope/spectrum analiser(simple device) 
