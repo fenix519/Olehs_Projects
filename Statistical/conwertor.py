@@ -3,15 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-
-
-
-
 star_range = 32
 stop_range = 80
 
 groups = ["Ч20", "Ч20-29", "Ч30-39", "Ч40-49", "Ч50-59", "Ч60-69", "Ч70+", "Ж20", "Ж20-29", "Ж30-39", "Ж40-49", "Ж50-69", "Ж60-69", "Ж70+"]
-
 
 def prop_calculator(data):
    prop = []
@@ -22,14 +17,12 @@ def prop_calculator(data):
          if (p <= d[1]) and (d[1] < p+1):
             counter +=1
       prop.append(counter)
-      
    return prop
-
 
 file = open('all.txt',encoding="utf8")
 
-print (file.readline())
-print (file.readline().split("\t"))
+print(file.readline())
+print(file.readline().split("\t"))
 
 
 data_all = []
@@ -52,6 +45,10 @@ for line in file :
            if float(m.group(0).split(":")[0]) > 9 :
               value = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1])/60 
               data_all.append([line.split("\t")[3],value])
+
+
+
+
 file.close()
 
 # calculation propability
