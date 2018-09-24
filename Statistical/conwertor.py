@@ -28,7 +28,6 @@ print(file.readline().split("\t"))
 data_all = []
 data_separate = [] 
 
-
 runers=0
 # selecting data from file
 for line in file :
@@ -45,8 +44,6 @@ for line in file :
            if float(m.group(0).split(":")[0]) > 9 :
               value = float(m.group(0).split(":")[0]) + float(m.group(0).split(":")[1])/60 
               data_all.append([line.split("\t")[3],value])
-
-
 
 
 file.close()
